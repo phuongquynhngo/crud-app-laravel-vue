@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
  
 use App\Models\User;
+
 use Illuminate\Support\Facades\Validator;
  
 class PassportAuthController extends Controller
@@ -31,6 +32,9 @@ class PassportAuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
+
+        //Set default role of self sign up user to Product Manager (id:3) 
+        $user->assignRole("3");
   
         $token = $user->createToken('Personal Access Token')->accessToken;
         // Extract token value
@@ -55,6 +59,8 @@ class PassportAuthController extends Controller
   
         if (auth()->attempt($data)) {
             $user = auth()->user();
+
+            $user->getRoleNames();
 
             // Generate personal access token
             $token = $user->createToken('Personal Access Token')->accessToken;
