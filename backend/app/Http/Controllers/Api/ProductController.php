@@ -36,6 +36,7 @@ class ProductController extends Controller
     
         $validator = Validator::make($input, [
             'name' => 'required',
+            'sku' => 'required',
             'detail' => 'required'
         ]);
     
@@ -88,14 +89,16 @@ class ProductController extends Controller
     
         $validator = Validator::make($input, [
             'name' => 'required',
+            'sku' => 'required',
             'detail' => 'required'
         ]);
     
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
+            return $this->sendError('Validation Error.', $validator->errors());
         }
     
         $product->name = $input['name'];
+        $product->sku = $input['sku'];
         $product->detail = $input['detail'];
         $product->save();
     

@@ -23,5 +23,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('get-user', [PassportAuthController::class, 'userInfo']);
  
  Route::resource('products', ProductController::class);
+
  
 });
