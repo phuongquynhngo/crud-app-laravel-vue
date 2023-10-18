@@ -1,9 +1,108 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
   theme: {
-    extend: {},
+      extends: {
+          colors: {
+              blue: '#0760FD',
+              'blue-100': '#F0F5FF',
+              'blue-200': '#D6E4FF',
+              'blue-300': '#ADC8FF',
+              'blue-400': '#84A9FF',
+              'blue-500': '#5B89FF',
+              'blue-600': '#3F76FF',
+              'blue-700': '#2E64FF',
+              'blue-800': '#1F51FF',
+              'blue-900': '#0F3FFF',
+              green: {
+                  1000: '#3AB82A',
+                  100: '#F0FFF0',
+                  200: '#C6F6C6',
+                  300: '#9AE69A',
+                  400: '#6CD96C',
+                  500: '#3AB82A',
+                  600: '#2EA623',
+                  700: '#1F7A1A',
+                  800: '#0F6B11',
+                  900: '#005C09',
+              },
+              red: '#F32939',
+              'red-100': '#FFF0F0',
+              'red-200': '#FFC6C6',
+              'red-300': '#FF9A9A',
+              'red-400': '#FF6C6C',
+              'red-500': '#F32939',
+              'red-600': '#D62333',
+              'red-700': '#B31A2B',
+              'red-800': '#8F111F',
+              'red-900': '#6B0817',
+              purple: '#4448F5',
+              'purple-100': '#F0F0FF',
+              'purple-200': '#C6C6FF',
+              'purple-300': '#9A9AFF',
+              'purple-400': '#6C6CFF',
+              'purple-500': '#4448F5',
+              'purple-600': '#3338D6',
+              'purple-700': '#2228B3',
+              'purple-800': '#111891',
+              'purple-900': '#000870',
+              yellow: '#F5C400',
+              'yellow-100': '#FFFDF0',
+              'yellow-200': '#FFF9C6',
+              'yellow-300': '#FFF59A',
+              'yellow-400': '#FFF26C',
+              'yellow-500': '#F5C400',
+              'yellow-600': '#D6A300',
+              'yellow-700': '#B38A00',
+              'yellow-800': '#917100',
+              'yellow-900': '#6E5800',
+              white: '#FFFFFF',
+              'off-white': '#F8FCFE',
+              'off-white-100': '#F8FCFE',
+              'off-white-200': '#E0F2F9',
+              'off-white-300': '#C8E8F4',
+              'off-white-400': '#B0DEF0',
+              'off-white-500': '#98D4EB',
+              'off-white-600': '#80CAE7',
+              'off-white-700': '#68C0E2',
+              'off-white-800': '#50B6DE',
+              'off-white-900': '#38ACDA',
+              warning: '#FFF9F5',
+              'warning-100': '#FFF9F5',
+              'warning-200': '#FFEED9',
+              'warning-300': '#FFE3BD',
+              'warning-400': '#FFD8A1',
+              'warning-500': '#FFCD85',
+              'warning-600': '#FFC269',
+              'warning-700': '#FFB74D',
+              'warning-800': '#FFAC31',
+              'warning-900': '#FFA116',
+          },
+      },
+      variants: {},
+      plugins: [],
+      purge: [
+          'components/**/*.vue',
+          'components/*.vue',
+          'layouts/**/*.vue',
+          'pages/**/*.vue',
+          'plugins/**/*.js',
+          'nuxt.config.js'
+      ]
   },
-  plugins: [],
-}
+  content: [
+      "./components/**/*.{js,vue,ts}",
+      "./layouts/**/*.vue",
+      "./pages/**/*.vue",
+      "./plugins/**/*.{js,ts}",
+      "./nuxt.config.{js,ts}",
+      "./app.vue",
+  ],
+  screens: {
+      'xs': { max: '639px' }, // Extra small screens
+      'sm': { min: '640px', max: '767px' }, // Mobile phones (small screens)
+      'md': { min: '768px', max: '1023px' }, // Tablets and larger mobile screens
+      'lg': { min: '1024px', max: '1279px' }, // Laptops and desktops
+      'xl': { min: '1280px', max: '1535px' }, // Large desktops
+      '2xl': { min: '1536px' } // Extra large screens
+  }
 
+}

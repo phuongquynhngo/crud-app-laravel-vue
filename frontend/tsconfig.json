@@ -1,36 +1,30 @@
 {
-  "compilerOptions": {
-    "target": "ES2018",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "lib": [
-      "ESNext",
-      "ESNext.AsyncIterable",
-      "DOM"
-    ],
-    "esModuleInterop": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "strict": true,
-    "noEmit": true,
-    "experimentalDecorators": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "./*"
-      ]
-    },
-    "types": [
-      "@nuxt/types",
-      "@types/node"
-    ]
-  },
-  "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist"
-  ]
+	// https://nuxt.com/docs/guide/concepts/typescript
+	"extends": "./.nuxt/tsconfig.json",
+	"compilerOptions": {
+		"resolveJsonModule": true,
+		"noImplicitAny": false,
+		"types": [
+		
+		]
+	},
+	"vueCompilerOptions": {
+		"plugins": [
+			"@vue-macros/volar/define-options",
+			"@vue-macros/volar/define-models",
+			"@vue-macros/volar/define-props",
+			"@vue-macros/volar/define-props-refs",
+			"@vue-macros/volar/short-vmodel",
+			"@vue-macros/volar/define-slots",
+			"@vue-macros/volar/export-props"
+		]
+		// ...
+	},
+	"exclude": [
+		"node_modules"
+	],
+  "include": [
+    "node_modules/**/*",
+    "src/**/*.ts"
+  ],
 }

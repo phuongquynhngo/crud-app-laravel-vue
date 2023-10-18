@@ -59,18 +59,22 @@ class PassportAuthController extends Controller
   
         if (auth()->attempt($data)) {
             $user = auth()->user();
-
+    
             $user->getRoleNames();
-
+    
             // Generate personal access token
             $token = $user->createToken('Personal Access Token')->accessToken;
-            // Extract token value
-            $tokenValue = $token->token;
-
-            return response()->json([ "success" => true, "login" => true, "token" =>  $tokenValue, "data" => $user], 200);
+    
+            return response()->json([
+                "success" => true,
+                "access_token" => $token,  // Send the token to the frontend
+                "user" => $user  // Send user information if needed
+            ], 200);
         } else {
-            // return response()->json(['error' => 'Unauthorised'], 401);
-            return response()->json([ "success" => false, "message" => "Invalid email or password"], 401);
+            return response()->json([
+                "success" => false,
+                "message" => "Invalid username or password"  // Adjust the message if needed
+            ], 401); 
         }
     }
 
