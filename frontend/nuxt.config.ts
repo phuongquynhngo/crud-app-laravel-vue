@@ -1,6 +1,3 @@
-
-import authMiddleware from './middleware/auth.global'
-
 export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
@@ -15,9 +12,9 @@ export default defineNuxtConfig({
   build: {
 		transpile: ["primevue"]
 	},
-  
   modules: [
     "@nuxtjs/tailwindcss",
+    '@pinia/nuxt',
 
   ],
   css: [
@@ -35,6 +32,15 @@ export default defineNuxtConfig({
       autoprefixer: {},
 
     },
+  },
+  imports: {
+    dirs: ['stores'],
+    presets: [
+      {
+        imports: ['twMerge'],
+        from: 'tailwind-merge',
+      },
+    ],
   },
   ssr: false,
   vue: {

@@ -20,11 +20,7 @@
 		]
 		// ...
 	},
-	"exclude": [
-		"node_modules"
-	],
   "include": [
-    "node_modules/**/*",
-    "src/**/*.ts"
+    "**/*.ts"
   ],
 }
