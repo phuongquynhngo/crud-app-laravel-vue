@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import api from "../composables/api";
 import { ref } from "vue";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
@@ -69,29 +69,46 @@ async function login(username: string, password: string) {
         grant_type: "password",
         username,
         password,
-      },             
+      },
       {
         headers: {
-          'Content-Type': "application/json",
-          'Accept': "application/json",
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     )
     .then((res) => {
-     // save token to local storage
-     Cookies.set('access_token', res.data.access_token); // Set the access_token cookie
-      Cookies.set('refresh_token', res.data.refresh_token); // Set the refresh_token cookie
-      
-      //redirect to dashboard
       console.log(res.data);
-      router.push("/users");
+
+      // save token to local storage
+      Cookies.set("access_token", res.data.access_token); // Set the access_token cookie
+      Cookies.set("refresh_token", res.data.refresh_token); // Set the refresh_token cookie
+
+       // Retrieve user information
+     getUserInfo();
+
+      //redirect to dashboard
+      router.push("/dashboard");
     })
     .catch((err) => {
-        if (err.response.status === 401) {
+      if (err.response.status === 401) {
         console.log("Invalid Credentials");
       } else if (err.response.status === 400) {
         console.log("Invalid Request");
+      } else {
+        console.error("An error occurred while logging in:", err);
       }
     });
+}
+
+async function getUserInfo() {
+  try {
+    const userInfo = await api.get(`/api/get-user`);
+    console.log("userInfo", userInfo);
+    return userInfo;
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+    throw error; // Re-throw the error for the caller to handle
+  }
 }
 </script>

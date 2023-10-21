@@ -16,7 +16,7 @@ export const useProductStore = defineStore('product', {
         const res = await api.get<any>('/api/products');
         if (res.data.success) {
           this.products = res.data.data;
-          console.log('this.products:', this.products);
+          //console.log('this.products:', this.products);
         }
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -25,25 +25,27 @@ export const useProductStore = defineStore('product', {
       }
     },
 
-    async fetchSelectedProductInfos(product) {
+    async fetchSelectedProduct(productId) {
+       // console.log('productId', productId);
       try {
-        const res = await api.get<any>(`/api/management/products/${product.id}/show`);
+        const res = await api.get<any>(`/api/products/${productId}`);
         if (res.data.success) {
           this.selectedProduct = res.data.data;
+          console.log('this.selectedProduct:', this.selectedProduct);
         }
       } catch (error) {
         console.error('Error fetching selected product:', error);
       }
     },
 
-    async createModal_submit(newProduct) {
+    async createProduct(newProduct) {
       try {
         const newProductObject = {
           name: newProduct.name,
           sku: newProduct.sku,
           detail: newProduct.detail,
         };
-        const response = await api.post<any>('/api/management/products', newProductObject, {
+        const response = await api.post<any>('/api/products', newProductObject, {
           headers: {
             'Content-Type': 'application/json',
           },

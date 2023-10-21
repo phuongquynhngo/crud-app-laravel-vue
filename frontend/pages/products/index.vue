@@ -1,14 +1,14 @@
 <script setup>
-import { onMounted } from 'vue';
-import { useProductStore } from '../../stores/product.store';
 definePageMeta({
   layout: "panel",
 });
-
+import { onMounted } from 'vue';
+import { useProductStore } from '../../stores/productStore';
+import { RouterLink } from 'vue-router';
 const productStore = useProductStore();
 onMounted(async () => {
   await productStore.fetchProducts();
-});;
+});
 
 
 </script>
@@ -35,6 +35,7 @@ onMounted(async () => {
                                 <tr className="bg-gray-100">
                                     <th className="px-4 py-2 w-20">No.</th>
                                     <th className="px-4 py-2">Name</th>
+                                    <th className="px-4 py-2">SKU</th>
                                     <th className="px-4 py-2">Details</th>
                                     <th className="px-4 py-2">Action</th>
                                 </tr>
@@ -43,14 +44,15 @@ onMounted(async () => {
                                 <tr v-for="(product, index) in productStore.products" :key="product.id">
                                     <td className="border px-4 py-2">{{product.id}} </td>
                                     <td className="border px-4 py-2">{{product.name}} </td>
+                                    <td className="border px-4 py-2">{{product.sku}} </td>
                                     <td className="border px-4 py-2">{{product.detail}} </td>
                                     <td className="border px-4 py-2">
-                                        <NavLink
+                                        <RouterLink
                                             className="px-4 py-2 text-sm text-white bg-blue-500 rounded"
-                                            href="/products/edit"
+                                            :to="`/products/edit?id=${product.id}`"
                                         >
                                             Edit
-                                        </NavLink>
+                                        </RouterLink>
                                         <button
                                             tabIndex="-1"
                                             type="button"
